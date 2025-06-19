@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+opencv-python-headless
+numpy
+supervision
+ultralytics
+huggingface_hub
+python-multipart
+python-dotenv
+google-cloud-documentai
+google-api-core
