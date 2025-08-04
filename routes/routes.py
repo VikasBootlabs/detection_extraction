@@ -4,10 +4,12 @@ from fastapi import APIRouter, UploadFile, File
 from fastapi.responses import StreamingResponse
 from services.dococr_extraction_services import GoogleDocOcr
 from services.signature_detecore_service import SignatureDetectorService
+from services.llama import generate_response
 
 import cv2
 import io
 from dotenv import load_dotenv
+import json
 load_dotenv()
 
 router = APIRouter()
@@ -42,4 +44,7 @@ async def extract_text(file: UploadFile = File(...)):
     pdf_bytes = await file.read()
 
     response = extractore.documentai_(pdf_bytes,mime)
-    return response
+    json_string= generate_response(response['data'])
+    # x = json_string.replace("```json\n", "").replace("\n```", "") 
+    data = json.loads(json_string)
+    return data

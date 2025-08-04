@@ -37,3 +37,4 @@ class GoogleDocOcr:
         document_object = result.document
         
         return{"status_code":200,"message":" extract using documentai","data":document_object.text}
+    
